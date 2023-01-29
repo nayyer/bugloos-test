@@ -1,9 +1,49 @@
 @import "../../../assets/scss/common";
 .item-container {
-    justify-content: space-between;
+    margin-top: 80px;
+    justify-content: space-around;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    .sec-2{
+      margin-bottom: 15px;
+      background-color: #e7f8ee;
+      border-radius: 8px;
+      padding: 10px 15px;
+    }
+    .lable-card{
+      background-color: #e7f8ee;
+      border-radius: 8px;
+      padding: 10px 15px;
+
+    }
+    .sec-1{
+      >span{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      p{
+        width: 100%;
+        margin: 10px 0;
+      }
+      img{
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        margin-right: 15px;
+      }
+    }
 }
 .item{
   
@@ -17,7 +57,6 @@
     box-shadow: 0 19px 195px #766f6f17;
     justify-content: space-between;
 }
-
 
 
 

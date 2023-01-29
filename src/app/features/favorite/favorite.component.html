@@ -1,21 +1,26 @@
-
-
-        <div class = "search-container vertical-space">
-          <mat-form-field appearance = "outline" class = "w-full ">
-            <input matInput placeholder = "{{'SEARCH'|translate}}" [(ngModel)] = "term">
-          </mat-form-field>
-        </div>
-
-        <div class="item-container">
-        <div  *ngFor = "let course of favoriteCourses | search : term" class="item">
-          <img [src]="course?.img">
-          <span>
-            {{course?.label}}
-          </span>
-
-        </div>
-        </div>
-
+<div class="container">
+  <div class="item-container">
+    <div *ngFor="let course of favoriteCourses" class="item">
+      <img [src]="course?.img" class="mb-2">
+      <ul>
+        <li>
+          <div class="sec-1">
+            <span>
+              <img class="user-img" [src]="course?.img" [alt]="course?.label">
+              <span>name: {{course?.id}}</span>
+            </span>
+            <span class="lable-card">{{course?.label}}</span>
+          </div>
+          <p>description: {{course?.description}}</p>
+          <div class="sec-1 sec-2">
+            <span>price: {{course?.price}}</span>
+            <span>duration: {{course?.duration}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 

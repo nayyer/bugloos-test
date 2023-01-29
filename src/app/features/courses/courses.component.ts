@@ -127,20 +127,21 @@ export class CoursesComponent extends BaseComponent {
 
   ] 
   marketCategoryItems: { title: string, isActive?: boolean, label: string }[] = [
+      
+    {
+      title: 'STORE VALUE',
+      label: 'Store Value',
+    },
     {
       title: 'FAVORITES',
       label: 'FAVORITES',
-      isActive: true
-    },
+      },
     {
       title   : 'MAIN',
       label   : 'MAIN',
-      
+      isActive: true    
     },
-     {
-       title: 'STORE VALUE',
-       label: 'Store Value',
-     },
+
      {
        title: 'MEMES',
        label: 'Memes',
@@ -177,7 +178,7 @@ export class CoursesComponent extends BaseComponent {
 
 
   ngOnInit(): void {
-      this._authService.getUserInfoFetch().pipe(takeUntil(this.stop$)).subscribe((userinfo:UserInfo={})=> {
+    this._authService.getUserInfoFetch().pipe(takeUntil(this.stop$)).subscribe((userinfo:UserInfo={})=> {
     if (this.userInfo){ 
       this.store.dispatch(favoriteActions.getTasks());
     }

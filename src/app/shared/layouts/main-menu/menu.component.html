@@ -25,7 +25,7 @@
   </div>
 
   <div *ngIf="isAuthorized" class="header-theme ml-4" data-title="{{'LOGOUT'|translate}}">
-    <mat-icon svgIcon="logout-mid" (click)="logOut()"></mat-icon>
+    <button mat-button class="text-dark-500 bg-light-500 register-btn" (click)=logOut()>Log Out</button>
   </div>
 
 </div>
