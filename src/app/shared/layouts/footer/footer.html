@@ -1,0 +1,93 @@
+<footer>
+  <div class="download-app">
+    <div class="container app-section">
+      <div class="des-app">
+        <span>Ready to start</span>
+        <p>Download our mobile app.</p>
+        <p>for easy to start your course</p>
+      </div>
+      <div><img src="../../../../assets/images/common/arow-right.svg" width="130px" alt="arowleft"></div>
+      <div class="img-app-container">
+        <a><img src="../../../../assets/images/common/android.jpg" alt="androidapp"></a>
+        <a><img src="../../../../assets/images/common/ios.jpg" alt="iosapp"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="container bg-footer">
+      <div class="footer-inner">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="footer-right">
+            <div class="logo-footer"><img src="../../../../assets/images/common/logo-s.png" alt="logo" width="180px">
+            </div>
+            <div>
+              <ul class="footer-contact-us">
+                <li>
+                  <h6>Caribbean Ct</h6>
+                </li>
+                <li>
+                  <p>Hay market, Virginia(VA)</p>
+                </li>
+                <li class="mb-2"><span class="text-green-700 contact-us-icon"><mat-icon>email</mat-icon></span><span
+                    class="email-address">test@gmail.com</span></li>
+                <li><span class="text-green-700 contact-us-icon"><mat-icon>phone</mat-icon></span><span
+                    class="phon-number">(970)262 14
+                    13</span></li>
+              </ul>
+              <ul class="footer-social-media">
+                <li><a href="#"><mat-icon>face</mat-icon></a></li>
+                <li><a href="#"><mat-icon>face</mat-icon></a></li>
+                <li><a href="#"><mat-icon>face</mat-icon></a></li>
+                <li><a href="#"><mat-icon>face</mat-icon></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <div class="footer-left">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let menu of menuItems">
+              <div class="footer-left-item">
+                <h3>{{menu.label|translate}}</h3>
+                <ng-container *ngFor="let item of menu.items">
+                  <a *ngIf="!item.isAbsolute" [routerLinkActiveOptions]="{exact: true}" [routerLink]="item.route "
+                    routerLinkActive="active"> {{item.label | translate}} </a>
+                  <a *ngIf="item.isAbsolute" [href]="item.route " target="_blank"> {{item.label | translate}} </a>
+                </ng-container>
+
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+              <div class="footer-left-item last-col">
+                <h3>Subscribe</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, quis enim ipsum nisi ad inventore.
+                </p>
+                <mat-form-field appearance="outline" class="w-full">
+                  <input type="text" placeholder="Email">
+                </mat-form-field>
+
+                <button mat-flat-button class="btn-sub">Subscribe Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container copy-w">
+        <div>
+          <ul>
+            <li><a href="#">Terms of Servise</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Site,ap</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+        <div>
+          <p>
+            2021 <span class="text-green-700">Edule</span> Mad with💖by <span class="text-green-700">codecarnival</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
