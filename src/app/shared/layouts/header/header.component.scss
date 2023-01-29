@@ -38,6 +38,9 @@
     .navbar-contact-us ,.navbar-social-media {
       display: flex;
       color: #fff;
+      a{
+        color: white;
+      }
     }
     .navbar-contact-us{
       width: 80%;
@@ -627,7 +630,7 @@
   display: flex;
   align-items: center;
   background: $oil-light-5;
-  padding: $vertical-space-x-small/2 $vertical-space-small;
+  padding: $vertical-space-x-small $vertical-space-small;
   width: calc(100% - (5 * #{$vertical-space} + #{$vertical-space-small}));
   height: 100%;
   color: $oil-light-3;
@@ -640,7 +643,7 @@
   }
 
   input {
-    margin-right: $vertical-space-x-small/2;
+    margin-right: $vertical-space-x-small;
     border: none;
     background: transparent;
     border-radius: $radius;

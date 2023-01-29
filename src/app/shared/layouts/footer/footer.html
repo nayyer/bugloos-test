@@ -35,10 +35,9 @@
                     13</span></li>
               </ul>
               <ul class="footer-social-media">
-                <li><a href="#"><mat-icon>face</mat-icon></a></li>
-                <li><a href="#"><mat-icon>face</mat-icon></a></li>
-                <li><a href="#"><mat-icon>face</mat-icon></a></li>
-                <li><a href="#"><mat-icon>face</mat-icon></a></li>
+                <li *ngFor="let item of socialItems ">
+                  <a href="#"><mat-icon svgIcon="{{item?.iconClass}}"></mat-icon></a>
+                </li>
               </ul>
             </div>
           </div>
@@ -61,10 +60,7 @@
                 <h3>Subscribe</h3>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, quis enim ipsum nisi ad inventore.
                 </p>
-                <mat-form-field appearance="outline" class="w-full">
-                  <input type="text" placeholder="Email">
-                </mat-form-field>
-
+                <input type="text" placeholder="Email">
                 <button mat-flat-button class="btn-sub">Subscribe Now</button>
               </div>
             </div>
@@ -78,7 +74,7 @@
           <ul>
             <li><a href="#">Terms of Servise</a></li>
             <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Site,ap</a></li>
+            <li><a href="#">SiteMap</a></li>
             <li><a href="#">Security</a></li>
           </ul>
         </div>

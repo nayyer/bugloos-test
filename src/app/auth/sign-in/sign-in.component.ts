@@ -74,12 +74,10 @@ export class SignInComponent extends BaseComponent implements OnInit
    * */
   submit(isResend:boolean = false,isChecktype:boolean = true)
   {
-    console.log(this.form.email,this.form.password)
     if (this.form.email && this.form.password)
     {
       if (!StringHelper.isEmail(this.form.email))
       {
-        console.log(this.form.email);
         
         //this._notice.open('warning', this._translate.instant('YOUR_EMAIL_IS_NOT_VALID'))
         return
@@ -89,7 +87,6 @@ export class SignInComponent extends BaseComponent implements OnInit
     }
     else
     {
-      console.log("333333")
       
       //this._notice.open('warning', this._translate.instant('PLEASE_FILL_THE_FORM_CORRECTLY'))
     }

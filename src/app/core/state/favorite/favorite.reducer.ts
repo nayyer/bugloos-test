@@ -29,15 +29,12 @@ export const favoriteReducer = createReducer(
   // GeTasks
   on(favoriteActions.getTasks, (state) => {
       
-    console.log("00000-------------",state);
     return {...state, isLoading: true}
       
   }),
   on(favoriteActions.getTasksFailure, (state) => {
-   console.log("rrrrrrrrrrr",state)   
    return {...state, isLoading: true}}),
   on(favoriteActions.getTasksSuccess, (state, result) => {
-      console.log("__________>",state,result);
       return{...state,tasks: result.data, isLoading: false, isLoadingSuccess: true}
   }),
 
@@ -59,15 +56,8 @@ export const favoriteReducer = createReducer(
   on(favoriteActions.deleteTask, (state, {taskid}) => ({...state, isLoading: true, deleteTaskId: taskid})),
   on(favoriteActions.deleteTaskSuccess, (state, result) => {
     let tasks = undefined !== state.tasks ? JSON.parse(JSON.stringify(state.tasks)) : [];
-    console.log(result);
     if (result) {
       tasks = tasks.filter((task: { productId: any; }) => task.productId !== state.deleteTaskId);
-      // tasks.forEach((item :any) => {
-      //   if (item.id === state.deleteTaskId) {
-      //     item.isFavorite = false;
-      //   }
-      // })
-      console.log(tasks);
     }
     return {
       tasks,

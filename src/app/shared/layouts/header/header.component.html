@@ -16,10 +16,11 @@
         <li><img src="../../../../assets/images/common/left-arrow.svg" width="37px" alt="arowleft"></li>
       </ul>
       <ul class="navbar-social-media">
-        <li><mat-icon>face</mat-icon></li>
-        <li><mat-icon>face</mat-icon></li>
-        <li><mat-icon>face</mat-icon></li>
-        <li><mat-icon>pets</mat-icon></li>
+        <li *ngFor="let item of socialItems ">
+          <a href="#">
+            <mat-icon svgIcon="{{item?.iconClass}}"></mat-icon>
+          </a>
+        </li>
       </ul>
     </div>
     <!-- <ng-container>

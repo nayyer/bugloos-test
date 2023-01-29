@@ -37,8 +37,6 @@ export class TokenStorageService
     {
       return false;
     }
-    //console.log(token,token.uid)
-    //let decoded: any = this.decodeToken(token);
     return true;
   }
 

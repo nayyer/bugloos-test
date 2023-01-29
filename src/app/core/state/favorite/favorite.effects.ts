@@ -38,7 +38,6 @@ export class FavoriteEffects {
       exhaustMap(action =>
         this.coursesService.addTask(action.task).pipe(
           map((response :any) => {
-            console.log(response)
             return favoriteActions.createTaskSuccess(response)
           }),
           catchError((error: any) => {console.log(error);return of(favoriteActions.createTaskFailure(error))}))
@@ -52,7 +51,6 @@ export class FavoriteEffects {
       ofType(favoriteActions.deleteTask),
       switchMap(action => this.coursesService.deleteTask(action.taskid).pipe(
         map((response: any) => {
-             console.log("eewwwwwwwwwww",response) 
              return favoriteActions.deleteTaskSuccess(response)
         }),
           catchError((error: any) => of(favoriteActions.deleteTaskFailure(error))))

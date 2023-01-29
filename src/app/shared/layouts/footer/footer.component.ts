@@ -122,12 +122,6 @@ export class FooterComponent
       iconClass: 'linkedin-mid'
     },
 
-    //{
-    //  link:'',
-    //  iconUrl:'/assets/images/home/aparat.png'
-    //},
-
-
   ]
 
 
@@ -144,9 +138,15 @@ export class FooterComponent
   {
     this.makeIcons()
   }
+  
 
   makeIcons()
   {
+    this._appService.addSVGIcon('instagram-mid');
+    this._appService.addSVGIcon('twitter-mid');
+    this._appService.addSVGIcon('telegram-mid');
+    this._appService.addSVGIcon('sun-mid');
+    this._appService.addSVGIcon('linkedin-mid');
 
   }
 }

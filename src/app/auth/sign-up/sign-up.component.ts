@@ -49,6 +49,8 @@ export class SignUpComponent extends BaseComponent {
               private fb: FormBuilder
   ) {
     super();
+    this._appService.addSVGIcon('eye-disable-mid');
+    this._appService.addSVGIcon('eye-mid');
   }
 
   ngOnInit() {

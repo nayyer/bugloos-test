@@ -26,12 +26,9 @@ export class CoursesComponent extends BaseComponent {
     this.store.select(favoriteSelector).pipe(
       takeUntil(this.stop$)
     ).subscribe((data: any) => {
-      console.log('data', data)
       if (data?.tasks?.length) {
         let favorites = data.tasks.map((item: { productId: any; }) => item.productId);
-        console.log(favorites)
         this.courses.forEach(item => {
-          console.log("===", favorites.indexOf(item.id))
           item.isFavorite =  favorites.indexOf(item.id) > -1 ? true : false
         })
       } else {
@@ -39,7 +36,6 @@ export class CoursesComponent extends BaseComponent {
           item.isFavorite = false;
         })
       }
-      console.log(this.courses)
     })
    }
 
@@ -183,7 +179,6 @@ export class CoursesComponent extends BaseComponent {
   ngOnInit(): void {
       this._authService.getUserInfoFetch().pipe(takeUntil(this.stop$)).subscribe((userinfo:UserInfo={})=> {
     if (this.userInfo){ 
-      console.log("this.userInfo",this.userInfo)
       this.store.dispatch(favoriteActions.getTasks());
     }
   })
@@ -198,13 +193,11 @@ export class CoursesComponent extends BaseComponent {
   }
   toggleFavorate(item : Courses){
     item.isFavorite = !item.isFavorite;
-    console.log(item.isFavorite);
     const task = {
       createdBy: this.userInfo.uid,
       status: true,
       productId: item.id
     };
-    console.log("44444444",item.isFavorite)
     if (!item.isFavorite) {
       this.store.dispatch(favoriteActions.deleteTask({taskid: item.id}))
     } else {

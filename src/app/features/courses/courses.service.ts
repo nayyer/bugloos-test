@@ -18,7 +18,6 @@ export class CoursesService {
   rootURL = '/api';
 
   getTasks() {
-  console.log("oooooooo",this._authService.userData.uid)  
       const  docRef = this.afs.collection("favorites").ref
        return from(docRef.where('createBy', '==', this._authService.userData.uid).get())   
   }
@@ -34,7 +33,6 @@ export class CoursesService {
       productId:task.productId,
       createBy:task.createdBy
     };
-    console.log(taskData)
     return from(userRef.set(taskData, {
       merge: true,
     }));
@@ -49,19 +47,15 @@ export class CoursesService {
   }
 
   deleteTask(taskId: any) {
-    console.log('deleting task:::', taskId);
     
     const  docRef = this.afs.collection("favorites").ref
       docRef.where('createBy', '==', this._authService.userData.uid).get().then(querySnapshot => {
         const batch = this.afs.firestore.batch();
-        console.log(querySnapshot);
           querySnapshot.forEach((doc: any) => {
-            console.log(doc.data())
             if (doc?.data()?.productId === taskId) {
-              console.log('888888888888888888888')
               batch.delete(doc.ref);
             }
-        
+   
           });
         
         return batch.commit();

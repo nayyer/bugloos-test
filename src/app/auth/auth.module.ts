@@ -19,7 +19,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 // import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "@shared/angular-social-login";
 
-
 @NgModule(
   {
       imports: [

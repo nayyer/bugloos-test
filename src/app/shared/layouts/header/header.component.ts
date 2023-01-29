@@ -67,6 +67,24 @@ export class HeaderComponent extends BaseComponent
 
 
   ];
+  socialItems: { iconClass: string, iconUrl?: string, link: string }[] = [
+  {
+    link     : environment.instagram,
+    iconClass: 'instagram-mid'
+  },
+  {
+    link     : environment.twitter,
+    iconClass: 'twitter-mid'
+  },
+  {
+    link     : environment.telegram,
+    iconClass: 'telegram-mid'
+  },
+  {
+    link     : environment.linkedin,
+    iconClass: 'linkedin-mid'
+  }]
+
 
   get theme(): Theme
   {
@@ -126,6 +144,7 @@ export class HeaderComponent extends BaseComponent
 
   }
 
+
   ngOnInit(): void
   {
     this.getLanguages();
@@ -144,6 +163,14 @@ export class HeaderComponent extends BaseComponent
     this._appService.addSVGIcon('moon-mid');
     this._appService.addSVGIcon('sun-mid');
     this._appService.addSVGIcon('logout-mid');
+  
+    this._appService.addSVGIcon('instagram-mid');
+    this._appService.addSVGIcon('twitter-mid');
+    this._appService.addSVGIcon('telegram-mid');
+    this._appService.addSVGIcon('sun-mid');
+    this._appService.addSVGIcon('linkedin-mid');
+
+
   }
 
 

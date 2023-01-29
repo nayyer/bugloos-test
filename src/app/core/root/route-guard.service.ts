@@ -17,7 +17,6 @@ export class RouteGuard implements CanActivate
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
   {
-    console.log(route,state)
     if (this._tokenStorageService.isAuthorized())
     {
       return true;
