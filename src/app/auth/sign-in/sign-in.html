@@ -3,47 +3,39 @@
   <div class="app-page-body">
     <div class="bg-login-panel"><img src="../../../assets/images/common/login-panel.jpg" alt="test"></div>
     <div class="form-container">
-      <div class="wizard-item" >
-        <!-- <h2 class="form-inner-title">{{"ENTER_YOUR_INFORMATION"|translate}}</h2> -->
+      <div class="wizard-item">
         <div class="reg-logo">
           <img src="../../../assets/images/common/bg-reg.jpg" alt="registeration">
         </div>
-
-    <div class="form-items">
-      <ng-container>
-
-        <h2 class="form-top-title {{isMobileView ? 'flex justify-center' : ''  }}">{{'LOGIN'|translate}}</h2>
         <div class="form-items">
+          <ng-container>
 
-          <mat-form-field appearance="outline" [floatLabel]="floatLabelType" class="w-full vertical-space">
-            <mat-label>{{'EMAIL'|translate}}</mat-label>
-            <input matInput [(ngModel)]="form.email" #email="ngModel" name="email" [readonly]="isCheckingLogin"
-              (keydown.enter)="submit()" inputmode="decimal">
-            <mat-icon matSuffix svgIcon="mobile-mid"></mat-icon>
-            <mat-error *ngIf="!(email.valid || email.pristine)">
-              *{{'YOUR_MOBILE_IS_NOT_VALID'|translate}}</mat-error>
-          </mat-form-field>
+            <h2 class="form-top-title {{isMobileView ? 'flex justify-center' : ''  }}">{{'LOGIN'|translate}}</h2>
+            <div class="form-items">
 
+              <mat-form-field appearance="outline" [floatLabel]="floatLabelType" class="w-full vertical-space">
+                <mat-label>{{'EMAIL'|translate}}</mat-label>
+                <input matInput [(ngModel)]="form.email" #email="ngModel" name="email" [readonly]="isCheckingLogin"
+                  (keydown.enter)="submit()" inputmode="decimal">
+                <mat-error *ngIf="!(email.valid || email.pristine)">
+                  *{{'YOUR_MOBILE_IS_NOT_VALID'|translate}}</mat-error>
+              </mat-form-field>
 
-          <mat-form-field appearance="outline" class="w-full vertical-space " [floatLabel]="floatLabelType">
+              <mat-form-field appearance="outline" class="w-full vertical-space " [floatLabel]="floatLabelType">
+                <mat-label><span>{{'PASSWORD'|translate}}</span></mat-label>
+                <input [dir]="'ltr'" matInput [(ngModel)]="form.password" [type]="isPasswordVisible ?'text': 'password'"
+                  [readonly]="isCheckingLogin" placeholder="" (keydown.enter)="submit()">
+                <mat-icon matSuffix class="link" [ngClass]="{'theme-color':isPasswordVisible}"
+                  svgIcon="{{isPasswordVisible ? 'eye-disable-mid' : 'eye-mid'}}"
+                  matTooltip="{{isPasswordVisible?'HIDE PASSWORD':'SHOW PASSWORD'}}"
+                  (click)="isPasswordVisible=!isPasswordVisible">
+                </mat-icon>
+              </mat-form-field>
 
-            <mat-label><span>{{'PASSWORD'|translate}}</span></mat-label>
-            <input [dir]="'ltr'" matInput [(ngModel)]="form.password" [type]="isPasswordVisible ?'text': 'password'"
-              [readonly]="isCheckingLogin" placeholder=""
-              (keydown.enter)="submit()">
-            <mat-icon matSuffix class="link" [ngClass]="{'theme-color':isPasswordVisible}"
-              svgIcon="{{isPasswordVisible ? 'eye-disable-mid' : 'eye-mid'}}"
-              matTooltip="{{isPasswordVisible?('HIDE_PASSWORD'|translate):('SHOW_PASSWORD'|translate)}}"
-              (click)="isPasswordVisible=!isPasswordVisible">
-            </mat-icon>
-          </mat-form-field>
+            </div>
 
-
-
-        </div>
-
-        <button mat-flat-button color="primary" class="w-full !mb-3" (click)="submit()"
-          [disabled]="isCheckingLogin || !checkFormIsValid()">{{isCheckingLogin ? ('CHECKING'|translate) :
+            <button mat-flat-button color="primary" class="w-full !mb-3 submit-btn" (click)="submit()"
+              [disabled]="isCheckingLogin || !checkFormIsValid()">{{isCheckingLogin ? ('CHECKING'|translate) :
           'LOGIN'|translate}}</button>
 
             <!-- Continue with Google -->
@@ -53,10 +45,7 @@
                 Continue with Google
               </button>
             </div>
-
-      </ng-container>
-
+          </ng-container>
+        </div>
+      </div>
     </div>
-  </div>
-
-</div>

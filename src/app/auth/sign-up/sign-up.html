@@ -1,33 +1,26 @@
 <div class="app-page-wrapper">
-
   <div class="app-page-body">
     <div class="bg-login-panel"><img src="../../../assets/images/common/login-panel.jpg" alt="test"></div>
     <div class="form-container">
       <div class="wizard-item" *ngIf="activeStepIndex==1">
-        <!-- <h2 class="form-inner-title">{{"ENTER_YOUR_INFORMATION"|translate}}</h2> -->
         <div class="reg-logo">
           <img src="../../../assets/images/common/bg-reg.jpg" alt="registeration">
         </div>
 
         <div class="form-items">
-          <div>
             <div [formGroup]="userProfile">
               <mat-form-field appearance="outline" class="w-full form-field-input">
-                <!-- <mat-label>{{'FIRST_NAME'|translate}}</mat-label> -->
                 <input matInput formControlName="firstname" type="text" class="formControl" placeholder="first name" />
-
               </mat-form-field>
+
               <mat-form-field appearance="outline" class="w-full form-field-input">
-                <!-- <mat-label>{{'LAST_NAME'|translate}}</mat-label> -->
                 <input matInput formControlName="lastname" type="text" class="formControl" placeholder="last name" />
-
               </mat-form-field>
+
               <mat-form-field appearance="outline" class="w-full form-field-input">
-                <!-- <mat-label>{{'EMAIL'|translate}}</mat-label> -->
                 <input matInput formControlName="email" required [pattern]="emailPattern" type="text"
                   class="formControl" placeholder="email" #email />
                 <mat-error *ngIf="form1.email.errors">
-
                   <div *ngIf="form1.email.errors.required">
                     email is required
                   </div>
@@ -36,15 +29,19 @@
                   </div>
                 </mat-error>
               </mat-form-field>
-              <mat-form-field appearance="outline" class="w-full form-field-input">
-                <!-- <mat-label>{{'PASSWORD'|translate}}</mat-label> -->
-                <input matInput name="password" formControlName="password" type="text" class="formControl"
-                  placeholder="password" />
 
+              <mat-form-field appearance="outline" class="w-full form-field-input">
+                <input matInput name="password" formControlName="password" type="password" required [pattern]="passwordPattern" 
+                class="formControl" placeholder="password" #password />
+                  <mat-error *ngIf="form1.password.errors">
+                    <div *ngIf="form1.password.errors.pattern">
+                      Password should be at least 6 character 
+                    </div>
+                  </mat-error>
               </mat-form-field>
 
               <button mat-flat-button class="submit-btn w-full !mb-6 " type="submit" (click)="onSubmit()"
-                [disabled]="!userProfile.valid">{{isChecking ? ('CHECKING'|translate):'SUBMIT'|translate}}</button>
+                [disabled]="!userProfile.valid">{{isChecking ? 'CHECKING' : 'SUBMIT' }}</button>
 
             </div>
             <!-- Continue with Google -->
@@ -54,9 +51,6 @@
                 Continue with Google
               </button>
             </div>
-            <!-- <span class="caption-2-bold">{{'REGISTER_BEFORE' | translate}}</span> -->
-            <!-- <a class="caption-2-bold" [routerLink]="'/auth/sign-in'"> &nbsp;{{'LOGIN_TO_ACCOUNT'|translate}}</a> -->
-          </div>
         </div>
       </div>
     </div>

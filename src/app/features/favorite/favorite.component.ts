@@ -1,8 +1,6 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { Component} from '@angular/core';
 import { Courses } from '@core/interfaces/Courses';
-import { Status } from '@core/interfaces/ToDo';
 import { AuthService } from 'src/app/auth/auth.service';
 import * as favoriteActions from '@core/state/favorite/favorite.actions';
 import { Store } from '@ngrx/store';
@@ -84,7 +82,7 @@ export class FavoriteComponent extends BaseComponent {
   }
 
 
-  constructor(private router: Router, private readonly store: Store,private _appService:AppService, private _authService:AuthService,public _tokenStorageService: TokenStorageService,) {
+  constructor(private router: Router, private readonly store: Store, private _authService:AuthService,public _tokenStorageService: TokenStorageService,) {
     super()
     this.store.select(favoriteSelector).pipe(
       takeUntil(this.stop$)
@@ -108,13 +106,6 @@ ngOnInit(){
   })
   }
 
-  onSubmit() {
-
-  }
-
-  delTask(task:any) {
-
-  }
   toggleFavorate(item : Courses){
     item.isFavorite = !item.isFavorite;
     const task = {

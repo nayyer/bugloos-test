@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { favoriteReducer } from '@core/state/favorite/favorite.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { FavoriteEffects } from '@core/state/favorite/favorite.effects';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader
 {
     return new TranslateHttpLoader(http);
@@ -31,6 +32,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader
     BaseComponent
   ],
   imports: [
+    MatSnackBarModule ,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -1,64 +1,62 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-//import {AuthSignUpContract} from "@core/interfaces/Auth";
-import {User, User2FA, UserInfo} from "@core/interfaces/User";
-import {BehaviorSubject} from "rxjs";
+import { User, User2FA, UserInfo } from "@core/interfaces/User";
+import { BehaviorSubject } from "rxjs";
 import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import * as auth from 'firebase/auth';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
-  providedIn:"root"
+  providedIn: "root"
 })
-export class AuthService
-{
-  userData:any;
-  onUserInfoFetched: BehaviorSubject<UserInfo>    = new BehaviorSubject<UserInfo>({});
-  getUserInfoFetch()
-  {
+export class AuthService {
+  userData: any;
+  onUserInfoFetched: BehaviorSubject<UserInfo> = new BehaviorSubject<UserInfo>({});
+  getUserInfoFetch() {
     return this.onUserInfoFetched;
   }
-  
-  constructor(private afs:AngularFirestore,private afAuth: AngularFireAuth,public router: Router, // Inject Firebase auth service
-  ){
-        /* Saving user data in localstorage when 
+
+  constructor(
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth, // Inject Firebase auth service
+    public router: Router,
+    private _snackbar : MatSnackBar
+  ) {
+    /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
-    this.afAuth.authState.subscribe((user: any) => { 
+    this.afAuth.authState.subscribe((user: any) => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
-        //this.router.navigate(['/']);
         this.getUserInfo(this.userData.uid);
       } else {
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
-
       }
     });
   }
 
-  user2FAType:User2FA=User2FA.sms_otp
-  GA_verify:boolean=false
-  user2FATypeTemp:User2FA = User2FA.sms_otp
+  user2FAType: User2FA = User2FA.sms_otp
+  GA_verify: boolean = false
+  user2FATypeTemp: User2FA = User2FA.sms_otp
   data: any = {
-    mobile     : '',
-    //national_id: '',
+    mobile: '',
   }
 
   /**
   * reset the stored data
   * */
-  resetData(){
-   this.data = {
-     mobile     : '',
-     //national_id: '',
-   }
-    this.user2FAType=User2FA.sms_otp
-    this.GA_verify=false
-    this.user2FATypeTemp= User2FA.sms_otp
+  resetData() {
+    this.data = {
+      mobile: '',
+    }
+    this.user2FAType = User2FA.sms_otp
+    this.GA_verify = false
+    this.user2FATypeTemp = User2FA.sms_otp
   }
 
 
@@ -67,46 +65,44 @@ export class AuthService
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        //this.SetUserData(result.user);
-
       })
       .catch((error) => {
-        window.alert(error.message);
+        this._snackbar.open('for using firebase services please connect to VPN.', 'close');
       });
   }
 
-    // Sign up with email/password
-    SignUp(user:User) {
-      return this.afAuth
-        .createUserWithEmailAndPassword(user.email, user.password)
-        .then((result) => {
-          /* Call the SendVerificaitonMail() function when new user sign 
-          up and returns promise */
-        
-          //this.SendVerificationMail();
-          let profileData : any = {};
-          if (result && result.user){
-            profileData={firstname:user.firstname,lastname:user.lastname}
-          }
-          this.SetUserData(result.user,profileData);
+  // Sign up with email/password
+  SignUp(user: User) {
+    return this.afAuth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then((result) => {
+        /* Call the SendVerificaitonMail() function when new user sign 
+        up and returns promise */
 
-        })
-        .catch((error) => {
-          window.alert(error.message);
-        });
-    }
+        //this.SendVerificationMail();
+        let profileData: any = {};
+        if (result && result.user) {
+          profileData = { firstname: user.firstname, lastname: user.lastname }
+        }
+        this.SetUserData(result.user, profileData);
 
-      /* Setting up user data when sign in with username/password, 
-  sign up with username/password and sign in with social auth  
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user: any,profileData:any) {
+      })
+      .catch((error) => {
+        this._snackbar.open('for using firebase services please connect to VPN.', 'close');
+      });
+  }
+
+  /* Setting up user data when sign in with username/password, 
+sign up with username/password and sign in with social auth  
+provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
+  SetUserData(user: any, profileData: any) {
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
-    const userData:any = {
-      firstname:profileData?.firstname || null,
-      lastname:profileData?.lastname || null
+    const userData: any = {
+      firstname: profileData?.firstname || null,
+      lastname: profileData?.lastname || null
     };
     return userRef.set(userData, {
       merge: true,
@@ -114,26 +110,21 @@ export class AuthService
 
   }
 
-  getUserInfo(uid:string){
+  getUserInfo(uid: string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${uid}`
     );
-     userRef.get().subscribe((doc:any) => {
+    userRef.get().subscribe((doc: any) => {
       if (doc.exists) {
-          this.userData.firstname =doc.data().firstname;
-          this.userData.lastname =doc.data().lastname;
-          this.onUserInfoFetched.next(this.userData);
+        this.userData.firstname = doc.data().firstname;
+        this.userData.lastname = doc.data().lastname;
+        this.onUserInfoFetched.next(this.userData);
       } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
+        this._snackbar.open('No such document!.', 'close');
       }
     })
-     
 
   }
-
-  //var docRef = db.collection("cities").doc("SF");
-
 
   // Sign in with Google
   GoogleAuth() {
@@ -147,29 +138,30 @@ export class AuthService
       .signInWithPopup(provider)
       .then((result) => {
         this.router.navigate(['/']);
-        this.SetUserData(result.user,{});
+        this.SetUserData(result.user, {});
       })
       .catch((error) => {
-        window.alert(error);
+        this._snackbar.open('for using firebase services please connect to VPN.', 'close');  
       });
   }
 
-    // Send email verfificaiton when new user sign up
-    SendVerificationMail() {
-      
-      return this.afAuth.currentUser
-        .then((u: any) => {
-          u.sendEmailVerification()})
-        .then(() => {
-          this.router.navigate(['/auth/verify-email-address']);
-        });
-    }
+  // Send email verfificaiton when new user sign up
+  SendVerificationMail() {
 
-      // Sign out
+    return this.afAuth.currentUser
+      .then((u: any) => {
+        u.sendEmailVerification()
+      })
+      .then(() => {
+        this.router.navigate(['/auth/verify-email-address']);
+      });
+  }
+
+  // Sign out
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['/auth/sign-in']);
+      this.router.navigate(['/']);
     });
   }
 

@@ -13,22 +13,3 @@ main {
   scroll-behavior: smooth;
 }
 
-:host {
-  &::ng-deep {
-  //  .app-mobile-menu {
-  //    display: none !important;
-  //  }
-  //
-  //  .header {
-  //    .header-left {
-  //      &:nth-of-type(2) {
-  //        display: none !important;
-  //      }
-  //    }
-  //  }
-    .header-left-settings{
-      border:none !important
-    }
-  //
-  }
-}

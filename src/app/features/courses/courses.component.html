@@ -9,17 +9,14 @@
   </mat-form-field>
 </div>
 <div class="container">
-<div class="owl-container">
-  <owl-carousel-o [options] = "carouselOption">
-    <ng-template carouselSlide *ngFor = "let item of marketCategoryItems">
-      <div class = "category-item"
-           [ngClass] = "{'category-item-active':item.isActive}"
-           matRipple
-           mat-stroked-button
-           (click) = "redirectToFavoraite(item)">{{item.label | translate }}</div>
-    </ng-template>
-  </owl-carousel-o>
-</div>
+  <div class="owl-container">
+    <owl-carousel-o [options]="carouselOption">
+      <ng-template carouselSlide *ngFor="let item of marketCategoryItems">
+        <div class="category-item" [ngClass]="{'category-item-active':item.isActive}" matRipple mat-stroked-button
+          (click)="redirectToFavoraite(item)">{{item.label | translate }}</div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
 
   <div class="item-container">
     <div *ngFor="let course of courses | search : term" class="item">
@@ -44,4 +41,3 @@
     </div>
   </div>
 </div>
-
