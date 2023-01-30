@@ -10,12 +10,7 @@ import {Theme} from "@core/interfaces/Theme";
 
 import {NavigationEnd, Router} from "@angular/router";
 import {TokenStorageService} from "@core/services/interceptors/token-storage.service";
-import {Direction} from "@angular/cdk/bidi";
-
-import {MatDialog} from "@angular/material/dialog";
-
-import {MatIconRegistry} from "@angular/material/icon";
-import {DomSanitizer} from "@angular/platform-browser";
+import {Direction} from "@angular/cdk/bidi"
 
 import {Storage} from "@core/helpers/Storage";
 import {environment} from "@environment/environment";
@@ -31,13 +26,11 @@ export class AppComponent
 {
   get dir(): Direction
   {
-    //return Storage.get(environment.languageKey) == 'en' ? 'ltr' : 'rtl'
     return 'ltr'
   }
 
   get lang(): string
   {
-    //return Storage.get(environment.languageKey) || environment.defaultLang
     return 'en'
   }
 

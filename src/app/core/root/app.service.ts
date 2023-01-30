@@ -53,9 +53,6 @@ export class AppService
     return this.onLangChanged;
   }
 
-
-
-
   constructor(@Inject(PLATFORM_ID) private platformId: any,
 
               private _tokenService: TokenStorageService,
@@ -68,8 +65,6 @@ export class AppService
   {
 
   }
-
-
 
   /**
    * trigger to set website theme
@@ -115,7 +110,7 @@ export class AppService
   signOut(): void
   {
     Storage.remove('user');
-    this._router.navigate(['/auth']);
+    this._router.navigate(['/']);
   }
 
   /**

@@ -22,9 +22,6 @@ export class FavoriteEffects {
             
             let data: any[] =[];
             response.forEach((doc:any)=>data.push(doc.data()))
-            
-            //response=response.data();
-            console.log("dataaaaa",data)
             return favoriteActions.getTasksSuccess({data})
           }),
           catchError((error: any) => of(favoriteActions.getTasksFailure(error))))

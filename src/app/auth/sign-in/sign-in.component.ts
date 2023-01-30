@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { TokenStorageService } from "@core/services/interceptors/token-storage.service";
-import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Subscription } from "rxjs";
 import { StringHelper } from "@core/helpers/StringHelper";

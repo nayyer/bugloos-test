@@ -185,13 +185,6 @@ export class CoursesComponent extends BaseComponent {
   })
   }
 
-  onSubmit() {
-
-  }
-
-  delTask(task:any) {
-
-  }
   toggleFavorate(item : Courses){
     item.isFavorite = !item.isFavorite;
     const task = {

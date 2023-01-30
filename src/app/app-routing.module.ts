@@ -11,24 +11,14 @@ export const routes: Routes = [
   {
      path        : 'courses',
      loadChildren: () => import('./features/courses/courses.module').then(m => m.CoursesModule),
-
+     canActivate : [RouteGuard]
   },
   {
     path        : 'favorites',
     loadChildren: () => import('./features/favorite/favorite.module').then(m => m.FavoriteModule),
-
+    canActivate : [RouteGuard]
  },
-  //{
-  //  path        : 'auth',
-  //  loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-  //},
-  // {
-  //   path        : 'error',
-  //   loadChildren: () => import('./features/error/error.module').then(m => m.ErrorModule)
-  // },
 
-  //canActivate : [RouteGuard]
-  // {path: '**', redirectTo: 'error'}
 ];
 
 @NgModule({
