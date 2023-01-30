@@ -131,39 +131,6 @@ export class AppComponent
       }
     })
 
-    /**
-     * listen to chat widget ready state
-     * */
-    window.addEventListener('raychat_ready', (ets: any) => {
-      this._appService.isRaychatReady = true;
-      //open chat box in first view
-      if (Raychat)
-      {
-        if (this.isAuthorized)
-        {
-          let user:any=this._tokenStorageService.decodeToken( Storage.get(environment.accessTokenKey))
-          if(Object.keys(user).length){
-            Raychat.setUser(
-              {
-                email     : user.email?user.email:'',
-                name      : '',
-                about     : '',
-                phone     : user.phone_number?user.phone_number:'',
-                avatar    : '',
-                updateOnce: true
-              }
-            );
-          }
-
-        }
-        if (!Storage.get('showChatBox') && !this.isMobileView)
-        {
-          //Raychat.open();
-          //Storage.set('showChatBox', true)
-        }
-
-      }
-    });
   }
 
 
